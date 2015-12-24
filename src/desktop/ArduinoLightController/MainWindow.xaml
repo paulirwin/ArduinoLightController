@@ -1,0 +1,38 @@
+﻿<Window x:Class="ArduinoLightController.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArduinoLightController"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Light Controller" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Label Content="Port:" Margin="8" />
+        <ComboBox Grid.Column="1" Margin="8" ItemsSource="{Binding Ports}" SelectedValue="{Binding SelectedPort}" IsEnabled="{Binding CanChangePort}" />
+
+        <Label Grid.Row="1" Content="Status:" Margin="8" />
+        <Label Grid.Row="1" Grid.Column="1" Content="{Binding StatusDescription}" Margin="8" />
+
+        <Label Grid.Row="2" Content="Connection:" Margin="8" />
+        <Button x:Name="ConnectDisconnect" Grid.Row="2" Grid.Column="1" Margin="8" Content="{Binding ConnectAction}" Click="ConnectDisconnect_Click" />
+
+        <Label Grid.Row="3" Content="Commands:" Margin="8" />
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <Button x:Name="TurnOn" Content="Turn On Light" Margin="8" IsEnabled="{Binding CanSendCommands}" Click="TurnOn_Click"></Button>
+            <Button x:Name="TurnOff" Content="Turn Off Light" Margin="8" IsEnabled="{Binding CanSendCommands}" Click="TurnOff_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
